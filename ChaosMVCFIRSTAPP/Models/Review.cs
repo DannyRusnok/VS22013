@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +16,8 @@ namespace ChaosMVCFIRSTAPP.Models
 
         public string Contents { get; set; }
 
+        [Display(Name="Email adress")]
+        [DataType(DataType.EmailAddress)]
         public string ReviewerEmail { get; set; }
     }
 }
