@@ -14,10 +14,20 @@ namespace ChaosMVCFIRSTAPP.Controllers
     {
         private ChaosMVCFIRSTAPPContext db = new ChaosMVCFIRSTAPPContext();
 
+        //mnou vytvořené
+        public ActionResult DisplayByArtist(int ArtistID)
+        {
+            return View();
+        }
+
         // GET: Albums
         public ActionResult Index()
         {
-            return View(db.Albums.ToList());
+            //prvně vezmeme model, se kterým chceme pracovat
+            var albums = db.Albums.ToList();
+
+            //model zkombinujeme s view a vrátíme
+            return View(albums);
         }
 
         // GET: Albums/Details/5
@@ -36,6 +46,8 @@ namespace ChaosMVCFIRSTAPP.Controllers
         }
 
         // GET: Albums/Create
+        //defaultně se vytváří metoda GET
+        // tohle vrací view s prázdným formulářem, který je teprve třeba vyplnit
         public ActionResult Create()
         {
             return View();
@@ -44,6 +56,8 @@ namespace ChaosMVCFIRSTAPP.Controllers
         // POST: Albums/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // tohle zpracovává formulář postem
+        //Tím, že mám v parametru Album, mvc ví, že jsem vyplnil formulář a je nutné ho zpracovat
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AlbumID,Title")] Album album)
